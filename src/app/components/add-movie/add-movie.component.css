@@ -1,0 +1,13 @@
+.add-movie {
+    padding: 0 3rem;
+}
+.form-control {
+    min-width: 30vw;
+}
+
+.times {
+    position: absolute;
+    right: 32vw;
+    top: 10vh;
+    margin-top: 2px;
+}

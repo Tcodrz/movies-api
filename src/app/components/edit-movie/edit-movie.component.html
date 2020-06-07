@@ -1,0 +1,70 @@
+<div class="container" style="min-width: 40vw">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <img 
+            class="d-inline-block" 
+            [src]="data.Poster" alt="">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <form>
+
+                <div class="form-group">
+                    <label for="Title">Title: &nbsp;
+                    <input appNameValidator="bob" 
+                        class="form-control" 
+                        [(ngModel)]="data.Title" name="Title" 
+                        #title="ngModel"
+                        type="text"
+                        required>
+                    </label>
+                    <div class="alert alert-danger"
+                    *ngIf="title.invalid && (title.dirty || title.touched)"
+                    >
+                    <div *ngIf="title.errors.requied">
+                        Title is requied
+                    </div>
+                    <div *ngIf="title.errors.forbiddenName">
+                        Title allready taken
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Released">Released on: <br>  
+                    <input class="form-control" [(ngModel)]="data.Released" #released="ngModel" name="Released"
+                        type="text">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="Runtime">Runtime:  <br>
+                    <input class="form-control" [(ngModel)]="data.Runtime" #runtime="ngModel" name="Runtime"
+                        type="text">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="Genre">Genre:  <br>
+                    <input class="form-control" [(ngModel)]="data.Genre" #genre="ngModel" name="Genre"
+                        type="text">
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="Director">Director:  <br>
+                    <input class="form-control" [(ngModel)]="data.Director" #director="ngModel" name="Director"
+                        type="text">
+                    </label>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+    <div class="row mt-3">
+        <button class="btn btn-outline-danger ml-auto">
+            <i class="fa fa-eraser"></i>
+        </button>
+        <button class="btn btn-outline-success ml-3"
+        [mat-dialog-close]="data"
+            >
+            <i class="fa fa-save"></i>
+        </button>
+    </div>
+</div>

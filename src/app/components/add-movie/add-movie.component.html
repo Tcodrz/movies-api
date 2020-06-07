@@ -1,0 +1,51 @@
+<h2>Add New Movie</h2>
+<button class="btn btn-danger fa fa-times times" mat-dialog-close></button>
+<hr>
+<div class="form add-movie">
+    <form [formGroup]="frmAddMovie">
+        <div class="form-group">
+            <label for="title">Title:
+                <input type="text" class="form-control" formControlName="title">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="imdbRating">Rating:
+                <input type="number" class="form-control" formControlName="imdbRating">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="released">Released on:
+                <input type="date" class="form-control" formControlName="released">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="runtime">Runtime:
+                <input type="number" class="form-control" formControlName="runtime">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre:
+                <input type="text" class="form-control" formControlName="genre">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="director">Director:
+                <input type="text" class="form-control" formControlName="director">
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="poster">Image Link: 
+                <input type="url" class="form-control" #poster formControlName="poster">
+            </label>
+            
+        </div>
+
+        <div class="form-group">
+            <button (click)="onSubmit(frmAddMovie)" 
+                class="btn btn-success btn-block"
+                mat-dialog-close>
+                ADD MOVIE
+            </button>
+        </div>
+    </form>
+</div>
