@@ -1,0 +1,58 @@
+
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  padding: 1rem;
+  background-image: linear-gradient(to bottom right, 
+                        rgba(107, 106, 106, 0.7), 
+                        rgba(180, 177, 177, 0.7)), 
+                        url('../../../assets/images/cinema.jpg');
+  background-size: cover;
+}
+
+.edit-form {
+  flex: 1 1;
+  align-self: center;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.edit-buttons {
+  flex: 1 1;
+  align-self: center;
+}
+
+.form-control {
+  min-width: 100%;
+}
+
+.label {
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+@media only screen and (max-width: 300px){
+  .edit-container {
+    line-height: .2rem;
+    padding: .1rem;
+    margin: 0;
+  }
+  .edit-form {
+    padding: 0 ;
+  }
+}
+
+@media only screen and (min-width: 300px){
+  .edit-form {
+    padding: 0 ;
+    line-height: .2rem;
+    margin: 0;
+  }
+}
+@media only screen and (min-width: 576px) {
+  .edit-form {
+    padding: 2rem;
+    line-height: initial;
+  }
+}

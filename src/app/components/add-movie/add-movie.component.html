@@ -1,51 +1,101 @@
-<h2>Add New Movie</h2>
-<button class="btn btn-danger fa fa-times times" mat-dialog-close></button>
-<hr>
-<div class="form add-movie">
-    <form [formGroup]="frmAddMovie">
-        <div class="form-group">
-            <label for="title">Title:
-                <input type="text" class="form-control" formControlName="title">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for="imdbRating">Rating:
-                <input type="number" class="form-control" formControlName="imdbRating">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for="released">Released on:
-                <input type="date" class="form-control" formControlName="released">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for="runtime">Runtime:
-                <input type="number" class="form-control" formControlName="runtime">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for="genre">Genre:
-                <input type="text" class="form-control" formControlName="genre">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for="director">Director:
-                <input type="text" class="form-control" formControlName="director">
-            </label>
-        </div>
-        <div class="form-group">
-            <label for="poster">Image Link: 
-                <input type="url" class="form-control" #poster formControlName="poster">
-            </label>
-            
-        </div>
+<div class="add-container">
 
-        <div class="form-group">
-            <button (click)="onSubmit(frmAddMovie)" 
-                class="btn btn-success btn-block"
-                mat-dialog-close>
-                ADD MOVIE
-            </button>
-        </div>
-    </form>
+    <div class="form add-movie">
+        <form [formGroup]="frmAddMovie">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                    <input [appCapitalize]="'capitalize'" type="text" class="form-control" formControlName="Title">
+                
+                <div *ngIf="frmAddMovie.controls.Title.invalid && frmAddMovie.controls.Title.touched"
+                    class="alert alert-danger">
+                    <div *ngIf="frmAddMovie.controls.Title.errors.required">
+                        Title is required
+                    </div>
+                    <div *ngIf="frmAddMovie.controls.Title.errors.pattern">
+                        Title can only include alpha-numeric characters
+                    </div>
+                    <div *ngIf="frmAddMovie.controls.Title.errors.titleAllreadyExist">
+                        Title name is taken
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="imdbRating">Rating:</label>
+                    <input type="number" class="form-control" formControlName="imdbRating">
+                
+                <div *ngIf="frmAddMovie.controls.imdbRating.invalid && frmAddMovie.controls.imdbRating.touched"
+                    class="alert alert-danger">
+                    <div *ngIf="frmAddMovie.controls.imdbRating.errors.required">
+                        Rating is required
+                    </div>
+                    <div *ngIf="frmAddMovie.controls.imdbRating.errors.max">
+                        maximum rating value is 10
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="released">Release Date:</label>
+                    <input type="date" class="form-control" formControlName="Released">
+                
+                <div *ngIf="frmAddMovie.controls.Released.invalid && frmAddMovie.controls.Released.touched"
+                    class="alert alert-danger">
+                    <div *ngIf="frmAddMovie.controls.Released.errors.required">
+                        Release date is required
+                    </div>
+                    <div *ngIf="frmAddMovie.controls.Released.errors">
+                        Please Enter Valid Date
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="runtime">Runtime:</label>
+                    <input type="number" class="form-control" formControlName="Runtime">
+                
+                <div *ngIf="frmAddMovie.controls.Runtime.invalid && frmAddMovie.controls.Runtime.touched"
+                    class="alert alert-danger">
+                    <div *ngIf="frmAddMovie.controls.Runtime.errors.required">
+                        Runtime is required
+                    </div>
+                    <div *ngIf="frmAddMovie.controls.Runtime.errors.max">
+                        Maximum Value Exceeded
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre:</label>
+                    <input name="Genre" type="text" multiple class="form-control" formControlName="Genre">
+
+                
+                <div *ngIf="frmAddMovie.controls.Genre.invalid && frmAddMovie.controls.Genre.touched"
+                    class="alert alert-danger">
+                    <div *ngIf="frmAddMovie.controls.Genre.errors.required">
+                        Genre is Required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="director">Director:</label>
+                    <input [appCapitalize]="'capitalize'" type="text" class="form-control" formControlName="Director">
+                
+                <div *ngIf="frmAddMovie.controls.Director.invalid && frmAddMovie.controls.Director.touched"
+                    class="alert alert-danger">
+                    <div *ngIf="frmAddMovie.controls.Director.errors.required">
+                        Director Name is Required
+                    </div>
+                    <div *ngIf="frmAddMovie.controls.Director.errors.pattern">
+                        Please Use Only English Characters
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success btn-block" [disabled]="frmAddMovie.invalid"
+                    [mat-dialog-close]="frmAddMovie.value">
+                    ADD MOVIE
+                </button>
+                <button class="btn btn-danger btn-block" (click)="closeDialog()">
+                    BACK
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: black;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+app-navbar {
+    position: fixed;
+    width: 100vw;
+    z-index: 10000;
+}
+
+.backdrop{
+    background-color: rgb(0, 0, 0, .9);
+    
+}
+.panel {
+    background-color: violet;
+}
+
+.mat-dialog-container {
+    padding: 0 !important;
+    overflow: visible !important;
+    
+}

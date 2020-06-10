@@ -1,0 +1,21 @@
+<div class="delete-movie">
+
+
+    <span class="mb-3">Are You Sure You Want To Delete
+        <span>
+            "{{data.movie.Title}}" ?
+        </span>
+    </span>
+
+
+    <div class="buttons">
+
+        <button class="btn btn-danger fa fa-remove " (click)="data.delete = false"
+            [mat-dialog-close]="data"></button>
+        <button class="btn btn-success ml-2 fa fa-check " (click)="data.delete = true"
+            [mat-dialog-close]="data"></button>
+    </div>
+
+
+
+</div>

@@ -1,70 +1,114 @@
-<div class="container" style="min-width: 40vw">
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <img 
-            class="d-inline-block" 
-            [src]="data.Poster" alt="">
+<div class="edit-container">
+    
+        <div class="edit-form">
+            <form [formGroup]="frmEditMovie">
+                <div class="form-group">
+                    <label for="Title"><span class="label">Title:</span> {{this.data.Title}}
+                    </label>
+                        <input class="form-control" name="Title" type="text" formControlName="Title"
+                            [appCapitalize]="'capitalize'">
+                    
+                    <div *ngIf="frmEditMovie.controls.Title.invalid && frmEditMovie.controls.Title.touched"
+                        class="alert alert-danger">
+                        <div *ngIf="frmEditMovie.controls.Title.errors.titleAllreadyExist">
+                            This Title Is Unavailable
+                        </div>
+                        <div *ngIf="frmEditMovie.controls.Title.errors.required">
+                            Title Is Required
+                        </div>
+                        <div *ngIf="frmEditMovie.controls.Title.errors.pattern">
+                            Please Use Only Alpha-Numeric Characters
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imdbRating"><span class="label"> Rating: </span> {{ this.data.imdbRating }}
+                    </label>
+                        <input type="number" class="form-control" name="imdbRating" formControlName="imdbRating">
+                    
+                    <div *ngIf="frmEditMovie.controls.imdbRating.invalid && frmEditMovie.controls.imdbRating.touched"
+                        class="alert alert-danger">
+                        <div *ngIf="frmEditMovie.controls.imdbRating.errors.required">
+                            Rating Is Required
+                        </div>
+                        <div *ngIf="frmEditMovie.controls.imdbRating.errors.max">
+                            Max Value Exceeded
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Released"><span class="label">
+                            Released on:
+                        </span>
+                        {{ this.data.Released }}
+                    </label>
+                        <input class="form-control" name="Released" type="date" formControlName="Released">
+                    
+                    <div *ngIf="frmEditMovie.controls.Released.invalid && frmEditMovie.controls.Released.touched"
+                        class="alert alert-danger">
+                        <div *ngIf="frmEditMovie.controls.Released.errors.required">
+                            Release Date Is Required
+                        </div>
+                        <div *ngIf="frmEditMovie.controls.Released.errors">
+                            Please Enter Valid Date
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Runtime"><span class="label">
+                            Runtime:
+                        </span> {{ this.data.Runtime }}
+                    </label>
+                        <input class="form-control" name="Runtime" type="text" formControlName="Runtime">
+                    
+                    <div *ngIf="frmEditMovie.controls.Runtime.invalid && frmEditMovie.controls.Runtime.touched"
+                        class="alert alert-danger">
+                        <div *ngIf="frmEditMovie.controls.Runtime.errors.required">
+                            Runtime Is Required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Genre"><span class="label">
+                            Genre:
+                        </span>
+                        {{ this.data.Genre }}
+                    </label>
+                        <input class="form-control" name="Genre" type="text" formControlName="Genre">
+                    
+                    <div *ngIf="frmEditMovie.controls.Genre.invalid && frmEditMovie.controls.Genre.touched"
+                        class="alert alert-danger">
+                        <div *ngIf="frmEditMovie.controls.Genre.errors.required">
+                            Genre Is Required
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Director"><span class="label">
+                            Director:
+                        </span>
+                        {{ this.data.Director }}
+                    </label>
+                        <input class="form-control" name="Director" type="text" formControlName="Director">
+                    
+                    <div *ngIf="frmEditMovie.controls.Director.invalid && frmEditMovie.controls.Director.touched"
+                        class="alert alert-danger">
+                        <div *ngIf="frmEditMovie.controls.Director.errors.required">
+                            Director Is Required
+                        </div>
+                    </div>
+                </div>
+                <div class="edit-buttons mt-3">
+                    <button class="btn btn-success btn-block" [disabled]="frmEditMovie.invalid"
+                    [mat-dialog-close]="frmEditMovie.value">
+                    <i class="fa fa-save"></i>
+                </button>
+                <button (click)="closeDialog()" class="btn btn-danger btn-block">
+                    <i class="fa fa-eraser"></i>
+                </button>
+            </div>
+        </form>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <form>
 
-                <div class="form-group">
-                    <label for="Title">Title: &nbsp;
-                    <input appNameValidator="bob" 
-                        class="form-control" 
-                        [(ngModel)]="data.Title" name="Title" 
-                        #title="ngModel"
-                        type="text"
-                        required>
-                    </label>
-                    <div class="alert alert-danger"
-                    *ngIf="title.invalid && (title.dirty || title.touched)"
-                    >
-                    <div *ngIf="title.errors.requied">
-                        Title is requied
-                    </div>
-                    <div *ngIf="title.errors.forbiddenName">
-                        Title allready taken
-                    </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Released">Released on: <br>  
-                    <input class="form-control" [(ngModel)]="data.Released" #released="ngModel" name="Released"
-                        type="text">
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label for="Runtime">Runtime:  <br>
-                    <input class="form-control" [(ngModel)]="data.Runtime" #runtime="ngModel" name="Runtime"
-                        type="text">
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label for="Genre">Genre:  <br>
-                    <input class="form-control" [(ngModel)]="data.Genre" #genre="ngModel" name="Genre"
-                        type="text">
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label for="Director">Director:  <br>
-                    <input class="form-control" [(ngModel)]="data.Director" #director="ngModel" name="Director"
-                        type="text">
-                    </label>
-                </div>
-
-            </form>
-        </div>
-
-    </div>
-    <div class="row mt-3">
-        <button class="btn btn-outline-danger ml-auto">
-            <i class="fa fa-eraser"></i>
-        </button>
-        <button class="btn btn-outline-success ml-3"
-        [mat-dialog-close]="data"
-            >
-            <i class="fa fa-save"></i>
-        </button>
-    </div>
+    
 </div>

@@ -1,36 +1,30 @@
-<div class="container-fluid">
-    <div class="row mb-5" style="width: 100vw;">
+<app-navbar class="navi"></app-navbar>
 
-        <div *ngFor="let movie of movieList; let i = index" class="mt-5">
-            <div class="card position-static ml-4 mt-3" >
-                <img (click)="onImageClick(i)" 
-                    [src]="movie.Poster" alt="" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title" 
-                    style="margin-bottom: 0;"> 
-                    {{ movie.Title }} &nbsp;
-                    <i class="fa fa-star" style="color: orange;">&nbsp;
-                        <span class="rating" 
-                            style="color: black;">
+<div class="movie-container">
+    <div *ngFor="let movie of movieList; let i = index" class="mt-5 movie">
+        <div class="card mt-3">
+            <img (click)="onImageClick(i)" [src]="movie.Poster"
+             class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ movie.Title | capitalize }} &nbsp;
+                    <i class="fa fa-star star-rating">&nbsp;
+                        <span class="rating">
                             {{ movie.imdbRating }}
-                        </span>  
+                        </span>
                     </i>
                 </h5>
                 <hr>
-                    <p class="card-text">
-                        Released on {{ movie.Released| date }} 
-                    </p>
-                    <p> Runtime: {{ movie.Runtime }} </p>
-                    <p>Genre: {{ movie.Genre }} </p>
-                    <p>Director: {{movie.Director}}</p>
-                    
-                    <button (click)="onEdit(i)" 
-                        class="btn btn-outline-info btn-lg fa fa-edit edit mt-auto"></button>
-                    <button (click)="onRemove(i)" 
-                        class="btn btn-danger btn-lg fa fa-remove ml-3"></button>
-                </div>
+                <p class="card-text">
+                    Released on {{ movie.Released | date }}
+                </p>
+                <p> Runtime: {{ movie.Runtime }} </p>
+                <p>Genre: {{ movie.Genre | capitalize}}</p>
+                <p class="director">Director: {{ movie.Director |capitalize }}</p>
+                <button (click)="onEdit(i)" class="btn btn-outline-info btn-lg fa fa-edit edit mt-auto"></button>
+                <button (click)="onRemove(i)" class="btn btn-danger btn-lg fa fa-remove ml-3"></button>
             </div>
         </div>
-
     </div>
+
 </div>

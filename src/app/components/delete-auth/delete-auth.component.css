@@ -1,0 +1,35 @@
+.buttons {
+    display: inline-flex;
+}
+
+.delete-movie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+}
+
+@media only screen and (min-width: 200px){
+    .delete-movie{
+        font-size: .8rem;
+    }
+}
+@media only screen and (min-width: 576px){
+    .delete-movie{
+        font-size: 1rem;
+    }
+}
+@media only screen and (min-width: 766px){
+    .delete-movie{
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (min-width: 766px){
+    .delete-movie{
+        font-size: 1.8rem;
+    }
+}
+
+
+
+

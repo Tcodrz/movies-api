@@ -1,13 +1,47 @@
-.add-movie {
-    padding: 0 3rem;
-}
-.form-control {
-    min-width: 30vw;
+.add-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background-image: linear-gradient(to bottom right,
+      rgba(107, 106, 106, 0.7),
+      rgba(180, 177, 177, 0.7)),
+        url('../../../assets/images/cinema.jpg');
+  background-size: cover;
+  padding: 2rem;
 }
 
-.times {
-    position: absolute;
-    right: 32vw;
-    top: 10vh;
-    margin-top: 2px;
+.add-header{ 
+    margin-bottom: -3rem !important;
+}
+
+.add-movie {
+  padding: 1rem;
+  margin: 0 auto;
+  margin-bottom: -3rem;
+}
+
+.form-control {
+  min-width: 100%;
+}
+
+@media only screen and (max-width: 300px){
+  
+    .add-header {
+        font-size: 1.5rem;
+    }
+    .add-movie {
+        font-size: 1rem;
+        line-height: .7rem;
+    }
+}
+@media only screen and (min-width: 300px) {
+
+    .add-header {
+        font-size: 1.3rem;
+        padding: .5rem;
+    }
+    .add-movie {
+        line-height: .4rem;
+        padding: 1rem;
+    }
 }

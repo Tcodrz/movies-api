@@ -1,4 +1,5 @@
-import { MovieService } from './../../service/movie.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MovieValidators } from './../../Validators/movie.validators';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,12 +10,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddMovieComponent implements OnInit {
 
-  frmAddMovie : FormGroup;
+  frmAddMovie: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private movieService : MovieService
-    ) { }
+    public dialogRef: MatDialogRef<AddMovieComponent>,
+  ) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -22,38 +23,29 @@ export class AddMovieComponent implements OnInit {
 
   createForm() {
     this.frmAddMovie = this.fb.group({
-      title: ['', [Validators.required]],
-      released: ['', [Validators.required]],
-      runtime: ['', [Validators.required]],
-      genre: ['', [Validators.required]],
-      director: ['', [Validators.required]],
-      imdbRating: ['', [Validators.required]],
-      imdbID: ['', [Validators.required]],
-      poster: ['', ]
+      Title: ['', [
+        Validators.required,
+        Validators.pattern('^[- a-zA-Z0-9]+$'),
+        MovieValidators.titleAllreadyExist
+      ]],
+      Released: ['', [
+        Validators.required,
+        MovieValidators.dateValidator
+      ]],
+      Runtime: ['', [
+        Validators.required,
+        Validators.max(999)
+      ]],
+      Genre: ['', [Validators.required]],
+      Director: ['', [Validators.required, Validators.pattern('^[- a-zA-Z]+$')]],
+      imdbRating: ['', [Validators.required, Validators.max(10)]],
+      imdbID: [''],
+      Poster: ['',]
     })
   }
 
-  randomImage = 'https://source.unsplash.com/random/350x530'
-
-  onSubmit(frmAddMovie) {
-    let newMovie = frmAddMovie.value;
-    let movieToList = {
-      imdbID: this.generateID(),
-      Title: newMovie.title,
-      Poster: (newMovie.poster === '') ? this.randomImage : newMovie.poster,
-      imdbRating: `${newMovie.imdbRating}`,
-      Released: newMovie.released,
-      Runtime: `${newMovie.runtime} min`,
-      Genre: newMovie.genre,
-      Director: newMovie.director
-    }
-    console.log(movieToList);
-    this.movieService.movieList.splice(0,0,movieToList);
-
+  closeDialog() {
+    this.dialogRef.close();
   }
 
-  generateID() : string {
-    let id = Math.floor(Math.random() * 1000000);
-    return `rn${id}`; 
-  }
 }
