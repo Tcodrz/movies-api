@@ -1,5 +1,14 @@
 # HeroloCinema
 
+You can edit any movie, any property you wish, you can add a new movie and delete movies.
+on refresh all changes you made will be lost.
+
+if you add a new movie a random picture will be assigned to your movie.
+
+if you find bugs or have comments, let me know!
+
+enjoy!
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
 ## Development server
